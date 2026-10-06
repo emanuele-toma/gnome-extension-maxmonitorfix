@@ -1,0 +1,10 @@
+{
+  "uuid": "maxmonitorfix@emanuele-toma.github.io",
+  "name": "Maximized Window Monitor Fix",
+  "description": "Works around a Mutter bug on Wayland where a maximized window moved to another monitor with the Move window to monitor shortcut jumps back to its original monitor when focus changes. Follows your own shortcut settings.",
+  "shell-version": [
+    "50"
+  ],
+  "settings-schema": "org.gnome.shell.extensions.maxmonitorfix",
+  "url": "https://github.com/emanuele-toma/gnome-extension-maxmonitorfix"
+}

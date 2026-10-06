@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.maxmonitorfix" path="/org/gnome/shell/extensions/maxmonitorfix/">
+    <key name="maxmonitorfix-move-right" type="as">
+      <default>[]</default>
+      <summary>Internal: accelerators mirrored from the native move-to-monitor-right shortcut</summary>
+    </key>
+    <key name="maxmonitorfix-move-left" type="as">
+      <default>[]</default>
+      <summary>Internal: accelerators mirrored from the native move-to-monitor-left shortcut</summary>
+    </key>
+  </schema>
+  <schema id="org.gnome.shell.extensions.maxmonitorfix.state" path="/org/gnome/shell/extensions/maxmonitorfix/state/">
+    <key name="saved-native" type="a{smas}">
+      <default>{}</default>
+      <summary>Internal: native shortcuts saved while the extension is enabled</summary>
+    </key>
+  </schema>
+</schemalist>
