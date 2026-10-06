@@ -1,14 +1,48 @@
 # Maximized Window Monitor Fix
 
-GNOME Shell extension that works around a Mutter bug on Wayland: a window moved to another monitor with the "Move window to monitor" shortcut jumps back to its original monitor as soon as focus changes. In practice this was seen on maximized windows.
+Fixes the bug where a window you move to your other monitor with the keyboard shortcut jumps back to the first monitor as soon as you click on something else. It is a GNOME Shell extension for Wayland, written for Ubuntu 26.04 (GNOME 50), where this started happening after upgrading.
 
 Developed and tested on GNOME Shell 50.1 (Ubuntu 26.04), Wayland.
+
+## Does this affect you?
+
+You are probably in the right place if any of this sounds familiar:
+
+- You press `Super+Shift+Left` or `Super+Shift+Right` (or your own shortcut for "Move window one monitor to the left/right") and the window moves to the other screen, but snaps back to the original screen when you click another window or switch focus.
+- Windows go to the second monitor and then "teleport", "bounce back" or "return" to the first one.
+- Moving a window with the keyboard works for a moment, then undoes itself. Dragging it with the mouse works fine.
+- It worked on your previous Ubuntu release and started after you upgraded to Ubuntu 26.04 (GNOME 50).
+- It happens on a dual monitor setup (laptop plus external monitor, or two external monitors) and with maximized windows in particular.
+
+If that matches, this extension is the workaround. Install it, log out and back in, and use the same shortcut as before.
+
+It is not for you if windows move on their own without you pressing any shortcut (for example after waking from sleep or unplugging a monitor). That is a different problem.
 
 ## The problem
 
 You maximize a window and press the shortcut that moves it to the monitor on the left or right. It appears on the other screen, then jumps back when you click it or focus another window and return.
 
 This is tracked upstream as [mutter#4494](https://gitlab.gnome.org/GNOME/mutter/-/issues/4494) and on Ubuntu as bug 2156820 (libmutter 50.1). A proposed fix, [merge request !4852](https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/4852), was still open when this was written.
+
+## Questions people ask
+
+**Why does the window jump back after I click on something?**
+It is a bug in Mutter, GNOME's window manager. According to the proposed upstream fix, a window moved without the application's involvement can keep a stale position, which is applied again on the next state change such as a focus change. See the upstream issue above.
+
+**Is it only Ubuntu 26.04?**
+It was reported on Ubuntu 26.04 with libmutter 50.1. It likely affects other distributions shipping Mutter 50.x on Wayland, but this was only tested on Ubuntu 26.04.
+
+**Does it affect X11 sessions?**
+The reports and this extension are about Wayland. X11 was not tested.
+
+**Does it only happen with maximized windows?**
+In my testing, yes. The upstream issue describes it as affecting windows in general, so non-maximized windows may be affected for you. The extension moves those with the normal GNOME move and does not change how they behave.
+
+**Can I keep my own shortcut?**
+Yes. The extension uses whatever shortcut you set for moving windows between monitors, including custom ones such as `Super+Shift+Page Down`.
+
+**How do I turn it off?**
+`gnome-extensions disable maxmonitorfix@emanuele-toma.github.io` restores your original shortcuts. See Recovery below if something goes wrong.
 
 ## How it works
 
